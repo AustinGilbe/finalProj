@@ -1,29 +1,48 @@
+/*
+    This script handles the player's life and death in a game.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-//Made by Maria
 public class PlayerLife : MonoBehaviour
 {
+    /*  Declare a private variable called body of type Rigidbody2D that will be used to store the player's Rigidbody2D component.
+        Declare a private variable called anim of type Animator that will be used to store the player's Animator component.
+        Declare a private AudioSource variable called deathSound and makes it visible in the Unity Editor [SerializeField] for easy assignment of 
+        an audio clip to play when the player dies.
+    */
     private Rigidbody2D body;
     private Animator anim;
     [SerializeField] private AudioSource deathSound;
+
+    /*
+        The Start() method is part of the MonoBehaviour class in Unity method that is called when the script is first enabled. It assigns the body and anim variables to the player's 
+        Rigidbody2D and Animator components, respectively.
+    */
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
+    /*
+        OnCollisionEnter2D(Collision2D collision) is a built-in Unity method that is called when the player's Collider2D component collides with another Collider2D component. It checks if 
+        the collided object has the "Trap" tag, and if so, calls the Die() method.
+    */
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap")) 
         {
+            // User-defined method.
             Die();
         }
     }
 
+    // The private Die() method is called when the player collides with a trap object. It plays the deathSound, sets the player's bodyType to RigidbodyType2D.Static so they can't move after death,
+    // and sets the "death" trigger on the anim component which will trigger the "death" animation.
     private void Die()
     {
         deathSound.Play();
@@ -32,9 +51,9 @@ public class PlayerLife : MonoBehaviour
     }
 
 
-    
+    // The RestartLevel() uses the SceneManager class which is part of the "UnityEngine.SceneManagement." The method is used to restart the current level.
     private void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Reloads the level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
