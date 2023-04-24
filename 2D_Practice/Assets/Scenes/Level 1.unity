@@ -49896,5 +49896,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7138122294506509180, guid: 8a2801dd41acc3d408ed22dbfd13316e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8a2801dd41acc3d408ed22dbfd13316e, type: 3}
+--- !u!1 &7138122294729657711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7138122294506509155, guid: 8a2801dd41acc3d408ed22dbfd13316e, type: 3}
+  m_PrefabInstance: {fileID: 7138122294729657710}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7138122294729657712 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7138122294506509176, guid: 8a2801dd41acc3d408ed22dbfd13316e, type: 3}
+  m_PrefabInstance: {fileID: 7138122294729657710}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7138122294729657713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138122294729657711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8257af2e78e891468087ef4dc937619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 64
+  moveSpeed: 7
+  jumpForce: 14
+  jumpSound: {fileID: 7138122294729657712}
