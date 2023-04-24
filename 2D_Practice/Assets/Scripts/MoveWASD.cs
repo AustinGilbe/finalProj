@@ -4,7 +4,7 @@
 using UnityEngine;
 
 // The `PlayerMovement` class is defined and inherits from the `MonoBehaviour` class.
-public class PlayerMovement : MonoBehaviour
+public class MoveWASD : MonoBehaviour
 {
     /*
         `rb` is a Rigidbody2D component that represents the physical body of the player. `anim` is an Animator component that controls the player's animations. 
@@ -19,11 +19,11 @@ public class PlayerMovement : MonoBehaviour
 
     // Private variables that store the horizontal direction the player is moving (`dirX`), the player's movement speed (`moveSpeed`), and the player's jump force (`jumpForce`).
     private float dirX = 0f;
-    [SerializeField]private float moveSpeed = 7f;
-    [SerializeField]private float jumpForce = 14f;
+    [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float jumpForce = 14f;
 
     //  Define an enumeration called `MovementState` with the possible values of `idle`, `running`, `jumping`, and `falling`.
-    private enum MovementState {idle, running, jumping, falling}
+    private enum MovementState { idle, running, jumping, falling }
 
     // Private variable that stores the AudioSource component for the sound effect that plays when the player jumps.
     [SerializeField] private AudioSource jumpSound;
@@ -40,30 +40,43 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
     }
 
-    
+
     //  This method is called once per frame. 
     private void Update()
     {
         // Get the horizontal input from the player, sets the velocity of the `rb` Rigidbody2D component based on the `moveSpeed` and `dirX` values. 
-        dirX = Input.GetAxisRaw("Horizontal");
+        //dirX = Input.GetAxisRaw("Horizontal");
 
-        // The second component 'rb.velocity.y' is preserving the current y-component of the velocity. We are changing the velocity in the x-axis while preserving the velocity in the y-axis.
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            dirX = -1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            dirX = 1f;
+        }
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            dirX = 0f;
+        }
+        // The second component 'rb.velocity.y' is preserving the current y-component of the velocity. We are changing the velocity in the x-axis while preserving the velocity in the y-axis.Ho
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
         /*
             Check if the player has pressed the jump button (`Input.GetButtonDown("Jump")`) and if they are currently on the ground (`isGrounded()`), plays the jump sound effect 
             and sets the vertical velocity of the `rb` Rigidbody2D component to the `jumpForce` value. It then calls the `AnimationUpdate()` method.
         */
-        if (Input.GetButtonDown("Jump") && isGrounded())
+        if (Input.GetButtonDown("Jump") && isGroundedCharacter2())
         {
             jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        AnimationUpdate();
+        AnimationUpdateCharacter2();
     }
 
     // AnimationUpdate() updates the animation state of the player character. 
-    private void AnimationUpdate()
+    private void AnimationUpdateCharacter2()
     {
         // Declare a variable state of the MovementState enum type, which will store the current state of the player's movement.
         MovementState state;
@@ -100,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Finally, it sets the integer value of the state variable to the "state" parameter of the anim Animator component, which controls the player's animations.
-        anim.SetInteger("state", (int)state);        
+        anim.SetInteger("state", (int)state);
     }
 
     /*    
@@ -108,8 +121,8 @@ public class PlayerMovement : MonoBehaviour
         of the player's coll BoxCollider2D component downward with a length of 0.1 units. If this box collides with any objects in the jumpableGround layer mask, then the player is considered to be on the ground, 
         and the method returns true. Otherwise, it returns false.
     */
-    private bool isGrounded() 
+    private bool isGroundedCharacter2()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround); 
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 }
