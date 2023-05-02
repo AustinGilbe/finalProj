@@ -45,8 +45,6 @@ public class MoveArrows : MonoBehaviour
     private void Update()
     {
         // Get the horizontal input from the player, sets the velocity of the `rb` Rigidbody2D component based on the `moveSpeed` and `dirX` values. 
-        //dirX = Input.GetAxisRaw("Horizontal");
-
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             dirX = -1f;

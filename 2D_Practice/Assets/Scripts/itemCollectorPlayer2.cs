@@ -1,13 +1,9 @@
-/*
-    This script is responsible for managing a player's ability to collect items in the game world and updating the player's score based on the items collected.
-*/
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class item_collector : MonoBehaviour
+public class itemCollectorPlayer2 : MonoBehaviour
 {
     /*
         Define a private integer variable called points, which will be used to keep track of the player's score. Define two serialized private variables: a TextMeshProUGUI 
@@ -16,10 +12,9 @@ public class item_collector : MonoBehaviour
         value in the Unity Editor. Once the collectSound field has been assigned a valid AudioSource component in the scene, the Play() method of the AudioSource component is called 
         each time the player collects a Melon in the OnTriggerEnter2D method, causing the sound to play.
     */
-    private int points = 0;
-    [SerializeField] private TextMeshProUGUI Score;
+    [SerializeField] private TextMeshProUGUI ScorePlayer2;
     [SerializeField] private AudioSource collectSound;
-
+    
     // The private method OnTriggerEnter2D will be called automatically when the player collides with a trigger collider on an item in the game world.
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,12 +26,10 @@ public class item_collector : MonoBehaviour
 
             // Destroy the collision.gameObject, which is the game object that the player collided with (in this case, the Melon).
             Destroy(collision.gameObject);
-
             //  Increments the points variable by 500.
-            points += 500;
-
+            scoreMap.all_scores["Mask Dude"] = scoreMap.all_scores["Mask Dude"] + 500;
             // The script updates the text of the Score object to display the current score, which is the value of the points variable.
-            Score.text = "Score Player 1: " + points;
+            ScorePlayer2.text = "Score Player 2: " + scoreMap.all_scores["Mask Dude"];
         }
     }
 }
