@@ -65,16 +65,16 @@ public class MoveWASD : MonoBehaviour
             Check if the player has pressed the jump button (`Input.GetButtonDown("Jump")`) and if they are currently on the ground (`isGrounded()`), plays the jump sound effect 
             and sets the vertical velocity of the `rb` Rigidbody2D component to the `jumpForce` value. It then calls the `AnimationUpdate()` method.
         */
-        if (Input.GetButtonDown("Jump") && isGroundedCharacter2())
+        if (Input.GetButtonDown("Jump") && isGrounded())
         {
             jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        AnimationUpdateCharacter2();
+        AnimationUpdate();
     }
 
     // AnimationUpdate() updates the animation state of the player character. 
-    private void AnimationUpdateCharacter2()
+    private void AnimationUpdate()
     {
         // Declare a variable state of the MovementState enum type, which will store the current state of the player's movement.
         MovementState state;
@@ -119,7 +119,7 @@ public class MoveWASD : MonoBehaviour
         of the player's coll BoxCollider2D component downward with a length of 0.1 units. If this box collides with any objects in the jumpableGround layer mask, then the player is considered to be on the ground, 
         and the method returns true. Otherwise, it returns false.
     */
-    private bool isGroundedCharacter2()
+    private bool isGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }

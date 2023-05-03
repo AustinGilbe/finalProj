@@ -17,7 +17,7 @@ public class Finish : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Character" && !levelCompleted)
+        if (collision.gameObject.tag == "Character" && !levelCompleted)
         {
             finishSound.Play();
             // This is so that we don't repeat the finish song when we touch the checkpoint flag again (during those 2 seconds before we jump to the next level)
