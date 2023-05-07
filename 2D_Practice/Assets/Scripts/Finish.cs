@@ -7,7 +7,8 @@ public class Finish : MonoBehaviour
 {
     private AudioSource finishSound;
 
-    private bool levelCompleted = false;
+    private bool levelCompletedPlayer1 = false;
+    private bool levelCompletedPlayer2 = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -17,11 +18,21 @@ public class Finish : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Character" && !levelCompleted)
+        if (collision.gameObject.tag == "Player1" && !levelCompletedPlayer1)
         {
-            finishSound.Play();
             // This is so that we don't repeat the finish song when we touch the checkpoint flag again (during those 2 seconds before we jump to the next level)
-            levelCompleted = true;
+            finishSound.Play();
+            levelCompletedPlayer1 = true;
+        }
+        if (collision.gameObject.tag == "Player2" && !levelCompletedPlayer2)
+        {
+            // This is so that we don't repeat the finish song when we touch the checkpoint flag again (during those 2 seconds before we jump to the next level)
+            finishSound.Play();
+            levelCompletedPlayer2 = true;
+        }
+
+        if (levelCompletedPlayer1 && levelCompletedPlayer2)
+        {
             // This is so that the transition to the other level is not abrupt
             Invoke("CompleteLevel", 2f);
         }
