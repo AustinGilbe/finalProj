@@ -41,16 +41,31 @@ public class Player1Life : MonoBehaviour
         {
             // User-defined method.
             // Die();
-            LoseLives();
+            LoseLives("Trap");
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // User-defined method.
+            // Die();
+            LoseLives("Enemy");
         }
     }
 
     // The private Die() method is called when the player collides with a trap object. It plays the deathSound, sets the player's bodyType to RigidbodyType2D.Static so they can't move after death,
     // and sets the "death" trigger on the anim component which will trigger the "death" animation.
-    private void LoseLives()
+    private void LoseLives(string objectCollision)
     {
         deathSound.Play();
-        scoreMap.all_scores["Ninja Frog"] = scoreMap.all_scores["Ninja Frog"] - 100;
+
+        if (objectCollision == "Trap")
+        {
+            scoreMap.all_scores["Ninja Frog"] = scoreMap.all_scores["Ninja Frog"] - 100;
+        }
+        else if (objectCollision == "Enemy")
+        {
+            scoreMap.all_scores["Ninja Frog"] = scoreMap.all_scores["Ninja Frog"] - 200;
+        }
+
         ScorePlayer1.text = "Score Player 1: " + scoreMap.all_scores["Ninja Frog"];
 
         if (scoreMap.all_scores["Ninja Frog"] == 0)

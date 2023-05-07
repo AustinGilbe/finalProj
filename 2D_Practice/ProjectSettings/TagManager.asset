@@ -9,6 +9,7 @@ TagManager:
   - Character
   - Player1
   - Player2
+  - Enemy
   layers:
   - Default
   - TransparentFX
