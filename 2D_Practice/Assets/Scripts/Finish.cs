@@ -21,18 +21,19 @@ public class Finish : MonoBehaviour
         if (collision.gameObject.tag == "Player1" && !levelCompletedPlayer1)
         {
             // This is so that we don't repeat the finish song when we touch the checkpoint flag again (during those 2 seconds before we jump to the next level)
-            finishSound.Play();
+            
             levelCompletedPlayer1 = true;
         }
         if (collision.gameObject.tag == "Player2" && !levelCompletedPlayer2)
         {
             // This is so that we don't repeat the finish song when we touch the checkpoint flag again (during those 2 seconds before we jump to the next level)
-            finishSound.Play();
+            
             levelCompletedPlayer2 = true;
         }
 
         if (levelCompletedPlayer1 && levelCompletedPlayer2)
         {
+            finishSound.Play();
             // This is so that the transition to the other level is not abrupt
             Invoke("CompleteLevel", 2f);
         }
