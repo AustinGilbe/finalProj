@@ -52221,7 +52221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpableGround:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   moveSpeed: 7
   jumpForce: 14
   jumpSound: {fileID: 7138122294729657712}
