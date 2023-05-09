@@ -12,6 +12,6 @@ public class StartMenu : MonoBehaviour
     // When we click the start button, this method will be called and load the next scene? which is level one?????????????????????
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(/*SceneManager.GetActiveScene().buildIndex + 1*/ 1);
     }
 }
