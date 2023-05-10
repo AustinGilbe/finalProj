@@ -59,11 +59,11 @@ public class Player1Life : MonoBehaviour
 
         if (objectCollision == "Trap")
         {
-            scoreMap.all_scores["Ninja Frog"] = scoreMap.all_scores["Ninja Frog"] - 100;
+            scoreMap.all_scores["Ninja Frog"] = scoreMap.all_scores["Ninja Frog"] - 250;
         }
         else if (objectCollision == "Enemy")
         {
-            scoreMap.all_scores["Ninja Frog"] = scoreMap.all_scores["Ninja Frog"] - 200;
+            scoreMap.all_scores["Ninja Frog"] = scoreMap.all_scores["Ninja Frog"] - 250;
         }
 
         ScorePlayer1.text = "Score Player 1: " + scoreMap.all_scores["Ninja Frog"];

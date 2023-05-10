@@ -19,7 +19,7 @@ TagManager:
   - UI
   - Ground
   - Obstacle
-  - Player
+  - 
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: OverBackground
+    uniqueID: 2831054981
     locked: 0
   - name: Terrain
     uniqueID: 3269336513

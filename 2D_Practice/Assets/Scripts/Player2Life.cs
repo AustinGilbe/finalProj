@@ -50,7 +50,7 @@ public class Player2Life : MonoBehaviour
     private void LoseLives()
     {
         deathSound.Play();
-        scoreMap.all_scores["Mask Dude"] = scoreMap.all_scores["Mask Dude"] - 100;
+        scoreMap.all_scores["Mask Dude"] = scoreMap.all_scores["Mask Dude"] - 250;
         ScorePlayer2.text = "Score Player 2: " + scoreMap.all_scores["Mask Dude"];
 
         if (scoreMap.all_scores["Mask Dude"] == 0)
